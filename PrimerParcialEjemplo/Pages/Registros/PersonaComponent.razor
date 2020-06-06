@@ -1,0 +1,135 @@
+﻿@page "/persona"
+@page "/persona/{id:int}"
+@using PrimerParcialEjemplo.BLL
+@using PrimerParcialEjemplo.Models
+
+@inject IToastService toast
+
+<EditForm Model="persona" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+
+    <section class="form-register">
+        <div class="card-header">
+            <h3>Registro de Personas</h3>
+        </div>
+
+        <div class="card-body">
+            <form>
+                @*ID*@
+                <label>ID:</label>
+                <div class="form-group text-center" display: inline-block>
+                    <div class="form-row align-items-center">
+                        <div class="input-group">
+                            <InputNumber @bind-Value="persona.personaId" class="form-control" />
+                            <ValidationMessage For="(()=>persona.personaId)" />
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary" @onclick="Buscar">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*Nombre*@
+                <label>NOMBRE:</label>
+                <div class="form-group">
+                    <InputText @bind-Value="persona.nombre" class="form-control" />
+                    <ValidationMessage For="(()=>persona.nombre)" />
+                </div>
+                @*profesion*@
+                <label>PROFESION:</label>
+                <div class="form-group">
+                    <select class="form-control" @bind="persona.profesion">
+                        <option value="1"> Abogado</option>
+                        <option value="2"> Ingeniero</option>
+                    </select>
+                    <ValidationMessage For="(()=>persona.profesion)" />
+                </div>
+                @*fecha*@
+                <label>FECHA:</label>
+                <div class="form-group">
+                    <InputDate class="form-control" @bind-Value="persona.fecha" />
+                    <ValidationMessage For="(()=>persona.fecha)" />
+                </div>
+                @*estado civil*@
+                <label> ESTADO CIVIL</label>
+                <div class="form-check">
+                    <InputCheckbox @bind-Value="persona.estadoCivil" class="form-check" />
+                    <ValidationMessage For="(()=>persona.estadoCivil)" />
+                </div>
+            </form>
+        </div>
+
+        <div class="card-footer">
+            <div class="form-group text-center" display:inline-block>
+                <button type="button" class="btn btn-secondary" @onclick="Nuevo">Nuevo</button>
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-danger" @onclick="Eliminar">Eliminar</button>
+            </div>
+        </div>
+    </section>
+</EditForm>
+
+
+@code {
+
+    Persona persona = new Persona();
+    [Parameter]
+    public int id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (id > 0)
+        {
+            persona = PersonaBLL.Buscar(id);
+        }
+    }
+
+    private void Nuevo()
+    {
+        this.persona = new Persona();
+    }
+
+    private void Guardar()
+    {
+        bool guardado = PersonaBLL.Guardar(persona);
+        if (guardado)
+        {
+            Nuevo();
+            toast.ShowSuccess("Guardado correctamente!!");
+        }
+        else
+        {
+            toast.ShowError("No se pudo guardar..");
+        }
+
+    }
+
+    private void Buscar()
+    {
+        Persona auxPersona;
+        auxPersona = PersonaBLL.Buscar(persona.personaId);
+        if (auxPersona != null)
+        {
+            this.persona = auxPersona;
+        }
+        else
+        {
+            toast.ShowWarning("No encontrado..");
+        }
+    }
+
+    private void Eliminar()
+    {
+        bool eliminado = PersonaBLL.Eliminar(persona.personaId);
+        if (eliminado)
+        {
+            Nuevo();
+            toast.ShowInfo("Eliminado correctamente..");
+        }
+        else
+        {
+            toast.ShowError("No se pudo eliminar..");
+        }
+    }
+
+
+}
