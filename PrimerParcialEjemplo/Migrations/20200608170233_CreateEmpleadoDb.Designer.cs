@@ -9,8 +9,8 @@ using PrimerParcialEjemplo.DAL;
 namespace PrimerParcialEjemplo.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200606203642_PersonaDb")]
-    partial class PersonaDb
+    [Migration("20200608170233_CreateEmpleadoDb")]
+    partial class CreateEmpleadoDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,13 +18,10 @@ namespace PrimerParcialEjemplo.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.4");
 
-            modelBuilder.Entity("PrimerParcialEjemplo.Models.Persona", b =>
+            modelBuilder.Entity("PrimerParcialEjemplo.Models.Empleado", b =>
                 {
-                    b.Property<int>("personaId")
+                    b.Property<int>("empleadoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("estadoCivil")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("fecha")
@@ -34,12 +31,15 @@ namespace PrimerParcialEjemplo.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("profesion")
+                    b.Property<int>("ocupacion")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("personaId");
+                    b.Property<decimal>("sueldo")
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("Personas");
+                    b.HasKey("empleadoId");
+
+                    b.ToTable("Empleados");
                 });
 #pragma warning restore 612, 618
         }

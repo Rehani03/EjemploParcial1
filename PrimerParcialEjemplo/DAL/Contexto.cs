@@ -13,9 +13,9 @@ namespace PrimerParcialEjemplo.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source = Data\Persona.db");
+            optionsBuilder.UseSqlite(@"Data Source = c:\Parcial_db\Empleado.db");
         }
 
-        public DbSet<Persona> Personas { get; set; }
+        public DbSet<Empleado> Empleados { get; set; }
     }
 }
