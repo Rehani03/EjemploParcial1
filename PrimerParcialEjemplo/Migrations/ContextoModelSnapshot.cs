@@ -22,12 +22,20 @@ namespace PrimerParcialEjemplo.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("cedula")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("estado")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("fecha")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("nombre")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.Property<int>("ocupacion")
                         .HasColumnType("INTEGER");

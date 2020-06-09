@@ -13,10 +13,12 @@ namespace PrimerParcialEjemplo.Migrations
                 {
                     empleadoId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    nombre = table.Column<string>(nullable: false),
+                    nombre = table.Column<string>(maxLength: 30, nullable: false),
                     sueldo = table.Column<decimal>(nullable: false),
                     ocupacion = table.Column<int>(nullable: false),
-                    fecha = table.Column<DateTime>(nullable: false)
+                    fecha = table.Column<DateTime>(nullable: false),
+                    cedula = table.Column<string>(nullable: false),
+                    estado = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

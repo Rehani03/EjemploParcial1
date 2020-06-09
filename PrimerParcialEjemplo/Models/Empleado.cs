@@ -13,6 +13,8 @@ namespace PrimerParcialEjemplo.Models
         [Range(0, 1000, ErrorMessage =("El rango es de 0 a 1000"))]
         public int empleadoId { get; set; }
         [Required(ErrorMessage = "Este campo no puede estar vacio.")]
+        [MinLength(3, ErrorMessage ="El minimo de caracteres es 3")]
+        [MaxLength(30, ErrorMessage = "El maximo de caracteres es 30")]
         public string nombre { get; set; }
         [Required(ErrorMessage = "Este campo no puede estar vacio.")]
         [Range(1,1000000, ErrorMessage =("El maximo es 1000000"))]
@@ -20,6 +22,10 @@ namespace PrimerParcialEjemplo.Models
         [Required(ErrorMessage = "Este campo no puede estar vacio.")]
         public int ocupacion { get; set; }
         public DateTime fecha { get; set; }
+        [Required(ErrorMessage = "Este campo no puede estar vacio")]
+        [MinLength(11, ErrorMessage = "Complete los 11 numeros de la cedula")]
+        public string cedula { get; set; }
+        public bool estado { get; set; }
 
         public Empleado()
         {
@@ -28,6 +34,9 @@ namespace PrimerParcialEjemplo.Models
             sueldo = 0;
             ocupacion = 0;
             fecha = DateTime.Now;
+            cedula = string.Empty;
+            estado = false;
+            
         }
     }
 }

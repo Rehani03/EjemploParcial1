@@ -9,7 +9,7 @@ using PrimerParcialEjemplo.DAL;
 namespace PrimerParcialEjemplo.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200608170233_CreateEmpleadoDb")]
+    [Migration("20200609164407_CreateEmpleadoDb")]
     partial class CreateEmpleadoDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,12 +24,20 @@ namespace PrimerParcialEjemplo.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("cedula")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("estado")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("fecha")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("nombre")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.Property<int>("ocupacion")
                         .HasColumnType("INTEGER");
