@@ -23,7 +23,7 @@
             </div>
 
             <div class="card-body">
-                <form>    
+                <form>
                     <div class="form-row align-items-center">
                         <div class="col">
                             <div class="form-group">
@@ -48,7 +48,7 @@
                             <ValidationMessage For="(()=>empleado.nombre)" />
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>NOMBRE:</label>
                         <InputText class="form-control" @bind-Value="empleado.nombre" />
@@ -65,7 +65,7 @@
                         <label>OCUPACION:</label>
                         <select @bind="empleado.ocupacion" class="form-control">
                             <option value="" disabled selected>Elija una ocupación</option>
-                            @foreach(var item in lista)
+                            @foreach (var item in lista)
                             {
                                 <option value="@item.empleadoId">@item.nombre</option>
                             }
@@ -81,28 +81,36 @@
 
                     <div class="form-group">
                         <label>CEDULA:</label>
-                        <InputText @bind-Value="empleado.cedula" class="form-control"/>
-                        <ValidationMessage For="(()=>empleado.cedula)"/>
+                        <InputText @bind-Value="empleado.cedula" class="form-control" />
+                        <ValidationMessage For="(()=>empleado.cedula)" />
                     </div>
 
                     <div class="form-check-inline">
-                        <label>ESTADO:</label>
-                        <InputCheckbox @bind-Value="empleado.estado" class="form-check-inline"/>
+                        <label class="form-check-label">ESTADO:</label>
+                        <InputCheckbox @bind-Value="empleado.estado" class="form-check-input" />
                     </div>
 
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>NOMBRE</th>
-                                    <th>SUELDO</th>
-                                </tr>
-                            </thead>
-
-                        </table>
+                    <br>
+                    <br>
+                    <div class="radio-control">
+                        <label> SEXO:
+                            <input type="radio" value="Masculino" @onclick="(()=>Check(1))" /> Masculino
+                            <input type="radio" value="Femenino" @onclick="(()=>Check(2))" />Femenino
+                        </label>
                     </div>
 
+                    @*<div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>SUELDO</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>*@
 
                 </form>
             </div>
@@ -123,6 +131,7 @@
 @code {
     [Parameter]
     public int id { get; set; }
+
     List<Empleado> lista = new List<Empleado>();
 
     Empleado empleado = new Empleado();
@@ -141,6 +150,14 @@
         };
 
         lista.Add(empleadoAux);
+    }
+
+    private void Check(int id)
+    {
+        if (id == 1)
+            toast.ShowInfo("Masculino");
+        if (id == 2)
+            toast.ShowInfo("Femenino");
     }
 
     private void Nuevo()
