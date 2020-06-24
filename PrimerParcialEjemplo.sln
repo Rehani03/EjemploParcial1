@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimerParcialEjemplo", "PrimerParcialEjemplo\PrimerParcialEjemplo.csproj", "{EF2CE5C1-55D7-454C-90F5-1C5FA1958C8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EjemploParcialTest1", "EjemploParcialTest1\EjemploParcialTest1.csproj", "{B72F80F1-32CA-4D81-8753-C5418080A8A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EjemploParcialTest1", "EjemploParcialTest1\EjemploParcialTest1.csproj", "{B72F80F1-32CA-4D81-8753-C5418080A8A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -47,6 +47,32 @@ namespace PrimerParcialEjemplo.Migrations
 
                     b.ToTable("Empleados");
                 });
+
+            modelBuilder.Entity("PrimerParcialEjemplo.Models.Usuario", b =>
+                {
+                    b.Property<int>("usuarioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("contraseña")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("nivel")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
+
+                    b.HasKey("usuarioId");
+
+                    b.ToTable("Usuarios");
+                });
 #pragma warning restore 612, 618
         }
     }
