@@ -13,7 +13,7 @@ namespace PrimerParcialEjemplo.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source = c:\Parcial_db\Empleado.db");
+            optionsBuilder.UseSqlite(@"Data Source = DATA\Empleado.db");
         }
 
         public DbSet<Empleado> Empleados { get; set; }

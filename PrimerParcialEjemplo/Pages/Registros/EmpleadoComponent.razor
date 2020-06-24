@@ -16,8 +16,8 @@
     <DataAnnotationsValidator/>
 
     <section class="form-register">
+
         <div class="card">
-            
             <div class="card-header">
                 <h3>Registro de Empleado</h3>
             </div>
@@ -37,16 +37,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <label>FECHA:</label>
-                            <InputDate class="form-control col-5" @bind-Value="empleado.fecha" />
-                            <ValidationMessage For="(()=>empleado.fecha)" />
-                        </div>
-                        <div class="col">
-                            <label>NOMBRE:</label>
-                            <InputText class="form-control col-6" @bind-Value="empleado.nombre" />
-                            <ValidationMessage For="(()=>empleado.nombre)" />
-                        </div>
                     </div>
 
                     <div class="form-group">
@@ -64,11 +54,9 @@
                     <div class="form-group">
                         <label>OCUPACION:</label>
                         <select @bind="empleado.ocupacion" class="form-control">
-                            <option value="" disabled selected>Elija una ocupación</option>
-                            @foreach (var item in lista)
-                            {
-                                <option value="@item.empleadoId">@item.nombre</option>
-                            }
+                            <option value="" selected disabled>Elija una ocupacion</option>
+                            <option value="1">Abogado</option>
+                            <option value="2">Maestro</option>
                         </select>
                         <ValidationMessage For="(()=>empleado.ocupacion)" />
                     </div>
@@ -81,37 +69,15 @@
 
                     <div class="form-group">
                         <label>CEDULA:</label>
-                        <InputText @bind-Value="empleado.cedula" class="form-control" />
+                        <InputText class="form-control" @bind-Value="empleado.cedula" />
                         <ValidationMessage For="(()=>empleado.cedula)" />
                     </div>
 
                     <div class="form-check-inline">
-                        <label class="form-check-label">ESTADO:</label>
-                        <InputCheckbox @bind-Value="empleado.estado" class="form-check-input" />
+                        <label>ESTADO:</label>
+                        <InputCheckbox class="form-check-inline" @bind-Value="empleado.estado"/>
+                        <ValidationMessage For="(()=>empleado.estado)"/>
                     </div>
-
-                    <br>
-                    <br>
-                    <div class="radio-control">
-                        <label> SEXO:
-                            <input type="radio" value="Masculino" @onclick="(()=>Check(1))" /> Masculino
-                            <input type="radio" value="Femenino" @onclick="(()=>Check(2))" />Femenino
-                        </label>
-                    </div>
-
-                    @*<div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th>SUELDO</th>
-                    </tr>
-                </thead>
-
-            </table>
-        </div>*@
-
                 </form>
             </div>
 
@@ -119,11 +85,12 @@
                 <div class="form-group text-center" display:inline-block>
                     <button type="button" class="btn btn-secondary" @onclick="Nuevo">Nuevo</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
-                    <button type="button" class="btn btn-danger" @onclick="Eliminar">Eliminar</button>
+                    <button type="button" class="btn btn-danger" @onclick="Eliminar">Eliminar</button>>
                 </div>
             </div>
 
         </div>
+
     </section>
 
 </EditForm>
@@ -132,33 +99,7 @@
     [Parameter]
     public int id { get; set; }
 
-    List<Empleado> lista = new List<Empleado>();
-
     Empleado empleado = new Empleado();
-
-    protected override void OnInitialized()
-    {
-        var empleadoAux = new Empleado()
-        {
-            empleadoId = 2,
-            nombre = "Camilo",
-            cedula = "40225550033",
-            sueldo = 2500,
-            fecha = DateTime.Now,
-            estado = true,
-            ocupacion = 0
-        };
-
-        lista.Add(empleadoAux);
-    }
-
-    private void Check(int id)
-    {
-        if (id == 1)
-            toast.ShowInfo("Masculino");
-        if (id == 2)
-            toast.ShowInfo("Femenino");
-    }
 
     private void Nuevo()
     {

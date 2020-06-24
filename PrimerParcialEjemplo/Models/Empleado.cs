@@ -24,6 +24,7 @@ namespace PrimerParcialEjemplo.Models
         public DateTime fecha { get; set; }
         [Required(ErrorMessage = "Este campo no puede estar vacio")]
         [MinLength(11, ErrorMessage = "Complete los 11 numeros de la cedula")]
+        [Phone(ErrorMessage ="Debe ser numerico")]
         public string cedula { get; set; }
         public bool estado { get; set; }
 
