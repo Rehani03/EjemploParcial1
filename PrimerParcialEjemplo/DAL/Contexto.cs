@@ -17,5 +17,6 @@ namespace PrimerParcialEjemplo.DAL
         }
 
         public DbSet<Empleado> Empleados { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }
