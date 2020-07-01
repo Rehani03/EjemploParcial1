@@ -31,6 +31,7 @@ namespace PrimerParcialEjemplo.Models
         {
             usuarioId = 0;
             nombre = string.Empty;
+            fecha = DateTime.Now;
             nivel = 0;
             contraseña = string.Empty;
         }

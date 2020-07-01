@@ -107,12 +107,12 @@
 
     private void Buscar()
     {
-        Usuario auxusuario;
-        auxusuario = UsuarioBLL.Buscar(usuario.usuarioId);
-        if (usuario != null)
+        Usuario auxUsuario;
+        auxUsuario = UsuarioBLL.Buscar(usuario.usuarioId);
+        if (auxUsuario != null)
         {
             Nuevo();
-            this.usuario = auxusuario;
+            this.usuario = auxUsuario;
         }
         else
             toast.ShowInfo("No encontrado..");

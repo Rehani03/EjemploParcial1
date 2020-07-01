@@ -9,8 +9,8 @@ using PrimerParcialEjemplo.DAL;
 namespace PrimerParcialEjemplo.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200624223844_CreateDB")]
-    partial class CreateDB
+    [Migration("20200701221837_CreateEmpleadoDb")]
+    partial class CreateEmpleadoDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
