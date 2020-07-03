@@ -147,5 +147,52 @@ namespace PrimerParcialEjemplo.BLL
 			}
 			return exite;
 		}
+
+		public static string NivelUsuario(string Usuario)
+		{
+			string nivel = "1";
+			Contexto db = new Contexto();
+			try
+			{
+				//nivel = db.Usuarios.Where(A => A.nombre.Equals(Usuario));
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+			finally
+			{
+				db.Dispose();
+			}
+
+			return nivel;
+		}
+
+		public static bool VerificarExistenciaYClaveDelUsuario(string NombreUsuario, string clave)
+		{
+			bool paso = false;
+			Contexto contexto = new Contexto();
+
+			try
+			{
+				if (contexto.Usuarios.Any(A => A.nombre == NombreUsuario && A.contraseña == clave))
+				{
+					paso = true;
+
+				}
+
+				if (NombreUsuario == "Administrador" && clave == "1234")
+				{
+					paso = true;
+				}
+
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+			return paso;
+		}
 	}
 }

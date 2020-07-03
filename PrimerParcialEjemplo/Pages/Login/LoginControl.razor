@@ -1,0 +1,48 @@
+﻿@page "/loginControl"
+@inject NavigationManager navigator
+@using System.Web;
+
+<CascadingAuthenticationState>
+
+    <AuthorizeView>
+        <Authorized>
+            <b>Hola, @context.User.Identity.Name!</b>
+            <a class="ml-md-auto btn btn-primary"
+               href="/logout?returnUrl=/"
+               target="_top">
+                Logout
+            </a>
+            
+
+        </Authorized>
+        <NotAuthorized>
+            <input type="text"
+                   placeholder="Usuario"
+                   @bind="@Username" />
+            &nbsp;&nbsp;
+            <input type="password"
+                   placeholder="Clave"
+                   @bind="@Password" />
+            <a class="ml-md-auto btn btn-primary"
+               href="/login?paramUsername=@encode(@Username)&paramPassword=@encode(@Password)"
+               target="_top">Login</a>
+            <a href="empleado"></a>
+        </NotAuthorized>
+    </AuthorizeView>
+
+</CascadingAuthenticationState>
+
+
+@code {
+    string Username = "";
+    string Password = "";
+    
+    //public string User { get; set; }
+    //public string Pass { get; set; }
+
+    private string encode(string param)
+    {
+
+        return HttpUtility.UrlEncode(param);
+    }
+}
