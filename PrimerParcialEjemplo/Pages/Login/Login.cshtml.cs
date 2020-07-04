@@ -16,28 +16,50 @@ namespace PrimerParcialEjemplo.Pages.Login
 {
     public class LoginModel : PageModel
     {
+        ToastService ToastService = new ToastService();
         public string ReturnUrl { get; set; }
+        Usuario Usuarios = new Usuario();
+        Contexto contexto = new Contexto();
+        List<Usuario> ListaUsuarios = new List<Usuario>();
 
-        public async Task<IActionResult>
-            OnGetAsync(string paramUsername, string paramPassword)
+
+        public async Task<ActionResult> OnGetAsync(string paramUsername, string paramPassword)
         {
-            string returnUrl = Url.Content("~/");
+            string ReturnUrl = Url.Content("~/");
+            bool paso = false;
             try
             {
-                // Clear the existing external cookie
+
                 await HttpContext
                     .SignOutAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme);
             }
-            catch { }
-            // *** !!! This is where you would validate the user !!! ***
-            // In this example we just log the user in
-            // (Always log the user in for this demo)
+
+            catch
+            { }
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, paramUsername),
-                new Claim(ClaimTypes.Role, "Administrator"),
+                new Claim(ClaimTypes.Role, UsuarioBLL.NivelUsuario(paramUsername)),
+
             };
+            if (paramUsername == null || paramPassword == null)
+            {
+                return LocalRedirect(ReturnUrl);
+            }
+
+            string User = paramUsername;
+            string Pass = paramPassword;
+
+            paso = UsuarioBLL.VerificarExistenciaYClaveDelUsuario(User, Pass);
+
+            if (!paso)
+            {
+                return LocalRedirect(ReturnUrl);
+
+            }
+
+
             var claimsIdentity = new ClaimsIdentity(
                 claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties
@@ -56,7 +78,7 @@ namespace PrimerParcialEjemplo.Pages.Login
             {
                 string error = ex.Message;
             }
-            return LocalRedirect(returnUrl);
+            return LocalRedirect(ReturnUrl);
         }
     }
 }
