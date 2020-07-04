@@ -6,27 +6,18 @@
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <AuthorizeView>
-        <Authorized>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="usuario">
-                    <span class="oi oi-plus" aria-hidden="true"></span> Registro de Usuarios
-                </NavLink>
-            </li>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="empleado">
-                    <span class="oi oi-list-rich" aria-hidden="true"></span> Registro de Empleado
-                </NavLink>
-            </li>
-        </Authorized>
-        <NotAuthorized>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="NonUser">
-                    <span class="oi oi-list-rich" aria-hidden="true"></span> Menu No Autorizado
-                </NavLink>
-            </li>
-        </NotAuthorized>
-    </AuthorizeView>
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="empleado">
+                <span class="oi oi-lightbulb" aria-hidden="true"></span> Registro de Empleados
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="usuario">
+                <span class="oi oi-aperture" aria-hidden="true"></span> Registro de Usuarios
+            </NavLink>
+        </li>
+    </ul>
 </div>
 
 @code {

@@ -8,7 +8,7 @@
 
 
 
-@*<CascadingAuthenticationState>
+<CascadingAuthenticationState>
     <AuthorizeView>
         <NotAuthorized>
             <div class="card text-center">
@@ -45,7 +45,7 @@
         </Authorized>
     </AuthorizeView>
 </CascadingAuthenticationState>
-*@
+
 
 
 <style>
@@ -55,7 +55,8 @@
 </style>
 
 
-
+@if (AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.Identity.IsAuthenticated && NivelDeUsuario == false)
+{
     <EditForm Model="empleado" OnValidSubmit="Guardar">
         <DataAnnotationsValidator />
 
@@ -138,9 +139,10 @@
         </section>
 
     </EditForm>
+} 
+    
 
-
-    @code {
+@code {
 [Parameter]
     public int id { get; set; }
 
@@ -149,7 +151,7 @@
 
     protected override void OnInitialized()
     {
-        //NivelDeUsuario = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.IsInRole("Administrador");
+        NivelDeUsuario = AuthenticationStateProvider.GetAuthenticationStateAsync().Result.User.IsInRole("Cajero");
     }
 
     private void Nuevo()
