@@ -150,11 +150,11 @@ namespace PrimerParcialEjemplo.BLL
 
 		public static string NivelUsuario(string Usuario)
 		{
-			string nivel = "1";
+			string nivel = "Cajero";
 			Contexto db = new Contexto();
 			try
 			{
-				//nivel = db.Usuarios.Where(A => A.nombre.Equals(Usuario));
+				nivel = db.Usuarios.Where(A => A.nombre.Equals(Usuario)).Select(A => A.nivel).FirstOrDefault();
 			}
 			catch (Exception)
 			{

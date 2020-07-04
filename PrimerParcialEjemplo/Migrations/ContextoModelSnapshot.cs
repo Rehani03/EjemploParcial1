@@ -61,8 +61,9 @@ namespace PrimerParcialEjemplo.Migrations
                     b.Property<DateTime>("fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("nivel")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("nivel")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("nombre")
                         .IsRequired()

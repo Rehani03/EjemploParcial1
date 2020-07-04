@@ -20,7 +20,7 @@ namespace PrimerParcialEjemplo.Models
         public string nombre { get; set; }
 
         [Required(ErrorMessage = "Este campo no puede estar vacio.")]
-        public int nivel { get; set; }
+        public string nivel { get; set; }
         
         public DateTime fecha { get; set; }
 
@@ -32,7 +32,7 @@ namespace PrimerParcialEjemplo.Models
             usuarioId = 0;
             nombre = string.Empty;
             fecha = DateTime.Now;
-            nivel = 0;
+            nivel = string.Empty;
             contraseña = string.Empty;
         }
     }

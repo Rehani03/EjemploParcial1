@@ -9,8 +9,8 @@ using PrimerParcialEjemplo.DAL;
 namespace PrimerParcialEjemplo.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200701221837_CreateEmpleadoDb")]
-    partial class CreateEmpleadoDb
+    [Migration("20200704001106_CreateDB")]
+    partial class CreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,8 +63,9 @@ namespace PrimerParcialEjemplo.Migrations
                     b.Property<DateTime>("fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("nivel")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("nivel")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("nombre")
                         .IsRequired()
