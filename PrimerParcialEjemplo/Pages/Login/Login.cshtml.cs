@@ -16,11 +16,8 @@ namespace PrimerParcialEjemplo.Pages.Login
 {
     public class LoginModel : PageModel
     {
-        ToastService ToastService = new ToastService();
         public string ReturnUrl { get; set; }
-        Usuario Usuarios = new Usuario();
         Contexto contexto = new Contexto();
-        List<Usuario> ListaUsuarios = new List<Usuario>();
 
 
         public async Task<ActionResult> OnGetAsync(string paramUsername, string paramPassword)
